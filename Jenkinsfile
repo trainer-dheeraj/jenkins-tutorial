@@ -2,14 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                echo "Application Cloned Successfully"
-            }
-        }
         stage('Install') {
             steps {
-                echo "Dependencies Installed Successfully"
+                bat 'npm install'
             }
         }
         stage('Build') {
@@ -19,7 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Test Cases Executed Successfully"
+                bat 'npm test'
             }
         }
         stage('Deploy') {
