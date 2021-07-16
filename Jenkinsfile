@@ -17,9 +17,9 @@ pipeline {
                 bat 'npm test'
             }
         }
-        stage('Deploy') {
+        stage('Start') {
             steps {
-                echo "Application is successfully deployed"
+                bat 'npm start'
             }
         }
     }
