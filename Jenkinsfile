@@ -3,19 +3,29 @@ pipeline {
 
     stages {
         stage('Clone') {
-            echo "Application Cloned Successfully"
+            steps {
+                echo "Application Cloned Successfully"
+            }
         }
         stage('Install') {
-            echo "Dependencies Installed Successfully"
+            steps {
+                echo "Dependencies Installed Successfully"
+            }
         }
         stage('Build') {
-            echo "Application Build Successfully"
+            steps {
+                echo "Application Build Successfully"
+            }
         }
         stage('Test') {
-            echo "Test Cases Executed Successfully"
+            steps {
+                echo "Test Cases Executed Successfully"
+            }
         }
         stage('Deploy') {
-            echo "Application is successfully deployed"
+            steps {
+                echo "Application is successfully deployed"
+            }
         }
     }
 }
