@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+        registry = "trainerdheerajsharma/demoapp"
+        registryCredential = "docker"
+        dockerImage = ''
+    }
     agent any
 
     stages {
@@ -7,19 +12,21 @@ pipeline {
                 bat 'npm install'
             }
         }
-        stage('Build') {
-            steps {
-                echo "Application Build Successfully"
-            }
-        }
         stage('Test') {
             steps {
                 bat 'npm test'
             }
         }
-        stage('Start') {
+        stage('Build') {
             steps {
-                bat 'npm start'
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                docker.withRegistry('', registryCredential) {
+                    dockerImage.push()
+                }
             }
         }
     }
